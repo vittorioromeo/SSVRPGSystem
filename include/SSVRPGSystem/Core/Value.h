@@ -50,7 +50,7 @@ namespace ssvrpg
 			}
 
 			// Setters
-			void setBase(T mBase)						{ base = mBase; }
+			void setBase(T mBase)						{ base = mBase; recompute(); }
 
 			// Getters
 			T getBase() const							{ return base; }
