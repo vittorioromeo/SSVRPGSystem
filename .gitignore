@@ -1,3 +1,6 @@
+callgrind.*
+CMakeLists.txt.user.*
+
 lib/
 *.0000000
 doc/html
@@ -185,6 +188,4 @@ SSVOpenHexagon.txt
 *.ttf
 *.i
 *.a/CMakeLists.txt.user.ced8af0
-/CMakeLists.txt.user.ced8af0
-/CMakeLists.txt.user.7626ec3
 CMakeLists.txt.user.*
