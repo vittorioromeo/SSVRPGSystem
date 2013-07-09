@@ -11,7 +11,7 @@ namespace ssvrpg
 {
 	template<typename T> class Value;
 
-	template<typename T> class Modifier
+	template<typename T> class Modifier : public ssvu::MemoryManageable
 	{
 		private:
 			int priority{0};
