@@ -17,9 +17,9 @@ namespace ssvrpg
 			int priority{0};
 
 		public:
-			ssvu::Delegate<void, Value<T>&> onAdd;
-			ssvu::Delegate<void, Value<T>&> onRemove;
-			ssvu::Delegate<void, Value<T>&, T&> onCompute;
+			ssvu::Delegate<void(Value<T>&)> onAdd;
+			ssvu::Delegate<void(Value<T>&)> onRemove;
+			ssvu::Delegate<void(Value<T>&, T&)> onCompute;
 
 			Modifier(int mPriority = 0) : priority{mPriority} { }
 			~Modifier() = default;

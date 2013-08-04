@@ -27,7 +27,7 @@ namespace ssvrpg
 			}
 
 		public:
-			ssvu::Delegate<void> onPostCompute;
+			ssvu::Delegate<void()> onPostCompute;
 
 			Value(T mBase) : base{mBase}, computed{base} { }
 			~Value() { }
