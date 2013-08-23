@@ -25,7 +25,6 @@ file(GLOB_RECURSE SRC_LIST "${INC_DIR}/*" "${SRC_DIR}/*")
 include_directories(${INC_DIR})
 include_directories(${SSVUTILS_INCLUDE_DIR})
 add_library(${PROJECT_NAME} ${LIB_TYPE} ${SRC_LIST})
-target_link_libraries(${PROJECT_NAME} ${SSVUTILS_LIBRARY})
 
 if(BUILD_SHARED_LIB)
 	set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX -d)
