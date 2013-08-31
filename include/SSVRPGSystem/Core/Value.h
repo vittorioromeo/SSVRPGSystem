@@ -53,10 +53,8 @@ namespace ssvrpg
 				recompute();
 			}
 
-			// Setters
 			void setBase(T mBase)						{ base = mBase; recompute(); }
 
-			// Getters
 			T getBase() const							{ return base; }
 			T getComputed() const						{ return computed; }
 			std::vector<Modifier<T>*>& getModifiers()	{ return modifiers; }
