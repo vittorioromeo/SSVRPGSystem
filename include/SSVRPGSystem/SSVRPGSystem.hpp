@@ -5,7 +5,7 @@
 #ifndef SSVRPGSYSTEM
 #define SSVRPGSYSTEM
 
-#include "SSVRPGSystem/Core/Value.h"
-#include "SSVRPGSystem/Core/Modifier.h"
+#include "SSVRPGSystem/Core/Value.hpp"
+#include "SSVRPGSystem/Core/Modifier.hpp"
 
 #endif

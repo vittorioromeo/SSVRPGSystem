@@ -7,8 +7,8 @@
 
 #include <vector>
 #include <functional>
-#include <SSVUtils/SSVUtils.h>
-#include "SSVRPGSystem/Core/Modifier.h"
+#include <SSVUtils/SSVUtils.hpp>
+#include "SSVRPGSystem/Core/Modifier.hpp"
 
 namespace ssvrpg
 {

@@ -5,7 +5,7 @@
 #ifndef SSVRPG_MODIFIER
 #define SSVRPG_MODIFIER
 
-#include <SSVUtils/SSVUtils.h>
+#include <SSVUtils/SSVUtils.hpp>
 
 namespace ssvrpg
 {
