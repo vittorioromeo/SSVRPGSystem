@@ -34,12 +34,12 @@ namespace ssvrpg
 
 			void addDependency(Value<T>& mValue)
 			{
-				dependencies.push_back(&mValue);
+				dependencies.emplace_back(&mValue);
 				mValue.onPostCompute += [&]{ recompute(); };
 			}
 			void addModifier(Modifier<T>& mModifier)
 			{
-				modifiers.push_back(&mModifier);
+				modifiers.emplace_back(&mModifier);
 				ssvu::sort(modifiers, [](Modifier<T>* mA, Modifier<T>* mB){ return mA->getPriority() < mB->getPriority(); });
 				mModifier.onAdd(*this);
 
