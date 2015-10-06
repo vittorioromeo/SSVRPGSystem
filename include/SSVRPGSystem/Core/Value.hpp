@@ -12,53 +12,64 @@
 
 namespace ssvrpg
 {
-	template<typename T> class Value
-	{
-		private:
-			T base, computed;
-			std::vector<Value<T>*> dependencies; // not owned
-			std::vector<Modifier<T>*> modifiers; // not owned
+    template <typename T>
+    class Value
+    {
+    private:
+        T base, computed;
+        std::vector<Value<T>*> dependencies; // not owned
+        std::vector<Modifier<T>*> modifiers; // not owned
 
-			void recompute()
-			{
-				computed = base;
-				for(const auto& m : modifiers) m->onCompute(*this, computed);
-				onPostCompute();
-			}
+        void recompute()
+        {
+            computed = base;
+            for(const auto& m : modifiers) m->onCompute(*this, computed);
+            onPostCompute();
+        }
 
-		public:
-			ssvu::Delegate<void()> onPostCompute;
+    public:
+        ssvu::Delegate<void()> onPostCompute;
 
-			Value(T mBase) : base{mBase}, computed{base} { }
-			~Value() { }
+        Value(T mBase) : base{mBase}, computed{base} {}
+        ~Value() {}
 
-			void addDependency(Value<T>& mValue)
-			{
-				dependencies.emplace_back(&mValue);
-				mValue.onPostCompute += [&]{ recompute(); };
-			}
-			void addModifier(Modifier<T>& mModifier)
-			{
-				modifiers.emplace_back(&mModifier);
-				ssvu::sort(modifiers, [](Modifier<T>* mA, Modifier<T>* mB){ return mA->getPriority() < mB->getPriority(); });
-				mModifier.onAdd(*this);
+        void addDependency(Value<T>& mValue)
+        {
+            dependencies.emplace_back(&mValue);
+            mValue.onPostCompute += [&]
+            {
+                recompute();
+            };
+        }
+        void addModifier(Modifier<T>& mModifier)
+        {
+            modifiers.emplace_back(&mModifier);
+            ssvu::sort(modifiers, [](Modifier<T>* mA, Modifier<T>* mB)
+                {
+                    return mA->getPriority() < mB->getPriority();
+                });
+            mModifier.onAdd(*this);
 
-				recompute();
-			}
-			void removeModifier(Modifier<T>& mModifier)
-			{
-				ssvu::eraseRemove(modifiers, &mModifier);
-				mModifier.onRemove(*this);
+            recompute();
+        }
+        void removeModifier(Modifier<T>& mModifier)
+        {
+            ssvu::eraseRemove(modifiers, &mModifier);
+            mModifier.onRemove(*this);
 
-				recompute();
-			}
+            recompute();
+        }
 
-			void setBase(T mBase)						{ base = mBase; recompute(); }
+        void setBase(T mBase)
+        {
+            base = mBase;
+            recompute();
+        }
 
-			T getBase() const							{ return base; }
-			T getComputed() const						{ return computed; }
-			std::vector<Modifier<T>*>& getModifiers()	{ return modifiers; }
-	};
+        T getBase() const { return base; }
+        T getComputed() const { return computed; }
+        std::vector<Modifier<T>*>& getModifiers() { return modifiers; }
+    };
 }
 
 #endif
